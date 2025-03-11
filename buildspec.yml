@@ -11,6 +11,7 @@ phases:
     commands:
       - echo Entered the install phase...
       - apt-get update -y
+      - vault version
   build:
     commands:
       - echo Entered the build phase...
