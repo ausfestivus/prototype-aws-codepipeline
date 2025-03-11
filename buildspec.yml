@@ -13,7 +13,7 @@ phases:
       - apt-get update -y
   build:
     commands:
-      - echo Entered the build phase
+      - echo Entered the build phase...
       - echo Display VAULT_ variables
       - echo VAULT_ADDR $VAULT_ADDR
       - echo VAULT_TOKEN $VAULT_TOKEN
