@@ -7,9 +7,9 @@ env:
     VAULT_NAMESPACE: "lorem ipsum"
 
 phases:
-build:
-  commands:
-    - echo Display VAULT_ vars:
-    - echo VAULT_ADDR: $VAULT_ADDR
-    - echo VAULT_TOKEN: $VAULT_TOKEN
-    - echo VAULT_NAMESPACE: $VAULT_NAMESPACE
+  build:
+    commands:
+      - echo Display VAULT_ vars:
+      - echo VAULT_ADDR: $VAULT_ADDR
+      - echo VAULT_TOKEN: $VAULT_TOKEN
+      - echo VAULT_NAMESPACE: $VAULT_NAMESPACE
