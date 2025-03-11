@@ -1,0 +1,15 @@
+version: 0.2
+
+env:
+  variables:
+    VAULT_ADDR: "lorem ipsum"
+    VAULT_TOKEN: "lorem ipsum"
+    VAULT_NAMESPACE: "lorem ipsum"
+
+phases:
+build:
+  commands:
+    - echo Display VAULT_ vars:
+    - echo VAULT_ADDR: $VAULT_ADDR
+    - echo VAULT_TOKEN: $VAULT_TOKEN
+    - echo VAULT_NAMESPACE: $VAULT_NAMESPACE
