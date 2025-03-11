@@ -7,9 +7,14 @@ env:
     VAULT_NAMESPACE: "lorem ipsum"
 
 phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - apt-get update -y
   build:
     commands:
-      - echo Display VAULT_ vars:
-      - echo VAULT_ADDR: $VAULT_ADDR
-      - echo VAULT_TOKEN: $VAULT_TOKEN
-      - echo VAULT_NAMESPACE: $VAULT_NAMESPACE
+      - echo Entered the build phase
+      - echo Display VAULT_ variables
+      - echo VAULT_ADDR $VAULT_ADDR
+      - echo VAULT_TOKEN $VAULT_TOKEN
+      - echo VAULT_NAMESPACE $VAULT_NAMESPACE
