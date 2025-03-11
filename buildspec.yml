@@ -11,7 +11,7 @@ phases:
     commands:
       - echo Entered the install phase...
       - wget -O- https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo | sudo tee /etc/yum.repos.d/hashicorp.repo
-      - sudo yum -y install vault
+      - sudo yum --quiet --assumeyes install vault
       - sudo vault version
   build:
     commands:
