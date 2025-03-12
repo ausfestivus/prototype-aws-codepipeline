@@ -1,22 +1,37 @@
 version: 0.2
 
 env:
-  variables:
-    VAULT_ADDR: "lorem ipsum"
-    VAULT_TOKEN: "lorem ipsum"
-    VAULT_NAMESPACE: "lorem ipsum"
+  parameter-store:
+    VAULT_SECRET_ID: VAULT_SECRET_ID_CODEBUILD
 
 phases:
   install:
     commands:
+      - echo ----------------------------
       - echo Entered the install phase...
+      - echo ----------------------------
       - wget -O- https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo | sudo tee /etc/yum.repos.d/hashicorp.repo
       - sudo yum --quiet --assumeyes install vault
-      - sudo vault version
-  build:
+  pre_build:
     commands:
-      - echo Entered the build phase...
-      - echo Display VAULT_ variables
-      - echo VAULT_ADDR $VAULT_ADDR
-      - echo VAULT_TOKEN $VAULT_TOKEN
-      - echo VAULT_NAMESPACE $VAULT_NAMESPACE
+      - echo ------------------------------
+      - echo Entered the pre_build phase...
+      - echo ------------------------------
+      - echo
+      - echo ----------------------
+      - echo Retrieving Vault token
+      - echo ----------------------
+      - VAULT_TOKEN=`curl -k -q -s --request POST \
+                     --data '{"role_id":"'$VAULT_ROLE_ID'","secret_id":"'$VAULT_SECRET_ID'"}' \
+                     $VAULT_ADDR/v1/auth/approle/login | jq -r '.auth | .client_token'`
+      - echo ----------------------
+      - echo
+      - echo -----------------------
+      - echo Retrieve KV using token
+      - echo -----------------------
+      - VAULT_DATA=`curl -k -q -s -H "X-Vault-Token: $VAULT_TOKEN" \
+                    -X GET $VAULT_ADDR/v1/best-family/secrets/data/codebuild`
+      - echo ---------------
+      - echo Display KV info
+      - echo ---------------
+      - echo $VAULT_DATA
