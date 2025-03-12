@@ -28,7 +28,7 @@ phases:
       - echo ----------------------
       - echo printenv
       - echo ----------------------
-      - printenv
+      - printenv | grep -i vault
       - echo
       - echo -----------------------
       - echo Retrieve KV using token
