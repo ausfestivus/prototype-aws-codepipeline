@@ -30,10 +30,21 @@ phases:
                      --data '{"role_id":"'$VAULT_ROLE_ID'","secret_id":"'$VAULT_SECRET_ID'"}' \
                      $VAULT_ADDR/v1/auth/approle/login | jq -r '.auth | .client_token'`
       - echo
+      - echo ----------------------
+      - echo printenv - vault
+      - echo ----------------------
+      - printenv | grep -i vault
+      - echo
       - echo -----------------------
       - echo Retrieve KV using token
       - echo -----------------------
       - VAULT_DATA=`curl -k -q -s -H "X-Vault-Token:$VAULT_TOKEN" -X GET $VAULT_ADDR/v1/best-family/secrets/data/codebuild`
+      - echo
+      - echo ----------------------
+      - echo printenv - vault
+      - echo ----------------------
+      - printenv | grep -i vault
+      - echo
       - echo ---------------
       - echo Display KV info
       - echo ---------------
