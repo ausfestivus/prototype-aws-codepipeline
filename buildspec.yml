@@ -19,16 +19,16 @@ phases:
       - echo ------------------------------
       - echo
       - echo ----------------------
+      - echo printenv - vault
+      - echo ----------------------
+      - printenv | grep -i vault
+      - echo
+      - echo ----------------------
       - echo Retrieving Vault token
       - echo ----------------------
       - VAULT_TOKEN=`curl -k -q -s --request POST \
                      --data '{"role_id":"'$VAULT_ROLE_ID'","secret_id":"'$VAULT_SECRET_ID'"}' \
                      $VAULT_ADDR/v1/auth/approle/login | jq -r '.auth | .client_token'`
-      - echo
-      - echo ----------------------
-      - echo printenv
-      - echo ----------------------
-      - printenv | grep -i vault
       - echo
       - echo -----------------------
       - echo Retrieve KV using token
