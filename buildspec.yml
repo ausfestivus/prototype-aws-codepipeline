@@ -29,8 +29,7 @@ phases:
       - echo -----------------------
       - echo Retrieve KV using token
       - echo -----------------------
-      - VAULT_DATA=`curl -k -q -s -H "X-Vault-Token: $VAULT_TOKEN" \
-                    -X GET $VAULT_ADDR/v1/best-family/secrets/data/codebuild`
+      - VAULT_DATA=`curl -k -q -s -H X-Vault-Token:$VAULT_TOKEN -X GET $VAULT_ADDR/v1/best-family/secrets/data/codebuild`
       - echo ---------------
       - echo Display KV info
       - echo ---------------
